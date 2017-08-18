@@ -14,6 +14,9 @@ class UserModel(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    def __repr__(self):
+        return "<UserModel : %s>"%(self.username)
+
 
 class SessionToken(models.Model):
     user = models.ForeignKey(UserModel)
@@ -23,3 +26,36 @@ class SessionToken(models.Model):
 
     def create_token(self):
         self.session_token = str(uuid4())
+
+
+class PostModel(models.Model):
+    user = models.ForeignKey(UserModel)
+    image = models.FileField(upload_to='user_images')
+    image_url = models.CharField(max_length=255)
+    caption = models.CharField(max_length=240)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    @property
+    def like_count(self):
+        return self.likemodel_set.count()
+
+    @property
+    def comments(self):
+        return CommentModel.objects.filter(post=self).order_by('-created_on')
+
+
+class LikeModel(models.Model):
+    user = models.ForeignKey(UserModel)
+    post = models.ForeignKey(PostModel)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+
+class CommentModel(models.Model):
+    user = models.ForeignKey(UserModel)
+    post = models.ForeignKey(PostModel)
+    comment_text = models.CharField(max_length=555)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
