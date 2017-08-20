@@ -1,17 +1,121 @@
-   # login.html
-    <form method="post">
-    {% csrf_token %}
 
-      <div>
-          <label for="username">Username: </label>
-          <input id="username" type="text" name="username" value={{ username }}>
-      </div>
+<style >
 
-      <div>
-          <label for="password">Password: </label>
-          <input id="password" type="password" name="password" value={{ password }}>
-      </div>
+    .button6{
+        box-shadow:1px 1px 45px skyblue;
+        transition: 300ms all ease;
+        border:none;
+        padding: 5px 5px;margin:-5px 0 0 -5px;
+        height:29px;
+        width:70px;background-color: #BC279E;cursor:pointer;color:white;font-weight:bold;letter-spacing:2px;border-radius:5px}
 
-      <input type="submit" value="Log In">
+        .button6:hover{background:#C9277D}
 
+    input[type="text"], input[type="password"]{background: #333;
+        color: #ccc;
+        width: 200px;
+        padding: 6px 15px 6px 35px;
+        transition: 500ms all ease;
+        border: 1px solid #333;font-size: 20px;width: 300;border-radius: 10px;letter-spacing:3px}
+     input[type="text"]:hover,  input[type="password"]:hover{box-shadow: 12px 13px 0px rgba(204, 211, 51, 0.38),
+        -11px -14px 0px rgba(241, 96, 0, 0.28),
+        18px -24px 0px rgba(0, 0, 0, 0.34),
+        33px -6px 0px rgba(39, 74, 214, 0.28);}
+
+
+    .button7{
+       width:80;height:80px;box-shadow:1px 1px 20px black;
+        transition: 300ms all ease;
+        border-width:2px;
+        padding: 5px 5px;color:dodgerblue;border-radius: 50%;background:#8D35C0 ;
+        color:white;border:none
+
+    }
+    .button7:hover{margin:5px 0 0 -5px;
+        height:85px;
+        width:85px;background-color: #8D35C0;color:white;cursor:pointer}
+
+
+    body
+    {margin:0;width:100%;height:100%
+    }
+
+   </style>
+<body >
+    <div style="background:url('http://i.imgur.com/1I8nXSu.jpg');background-position:center;background-size:cover;width:100%;height:100%">
+        <div style="background:rgba(0,0,0,0.9);width:100%;height:100%"></div>
+    </div>
+
+  <div>
+
+
+
+    <table style="position:absolute;left:180px;top:80px;background:rgba(0,0,0,0.7);padding:10 20;box-shadow:2px 2px 10px white" width="300px" >
+        <tbody>
+ <form method="post">
+         {% csrf_token %}
+             <tr >
+                 <td align="center" style="color:whitesmoke;#5242D9;font-size:18px;letter-spacing:2px;font-family:sans-serif;padding:20px">&nbsp;<span style=" color:#BC279E;font-size:22px">Instagram</span> Clone</td>
+            </tr>
+            <tr >
+                <td  >
+                    <input type="text" required placeholder="username" class="text1" name="username"  value={{ username }}>
+                </td>
+            </tr>
+
+               <tr><td><br></td></tr>
+            <tr>
+                <td>
+                     <input type="password" required class="text2" placeholder="password" name="password" value={{ password }}></td></tr>
+            <tr><td><br></td></tr>
+            <tr>
+                <td  align="center" style="border-bottom:2px solid gray;padding-bottom:20px">
+                    <input type="submit" class="button6" value="Log in" ></td>
+            </tr></form>
+       <tr>
+            <td align="center" style="padding-top:20px">
+                 <form action="signup/">         {% csrf_token %}
+
+        <input type="submit" class="button7" value="Sign up">
     </form>
+
+            </td>
+        </tr>
+        <tr><td>
+            <p style="line-height:2em;color:white;font-size:14px;letter-spacing:3px;font-family:sans-serif;font-weight:normal;text-align:center">" This application might indicate it is a clone of <span style="color:#C9277D;">Instagram </span><br>but tbh it is just 5% of it. "</p>
+        </td>
+        </tr>
+        </tbody></table>
+
+  </div>
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

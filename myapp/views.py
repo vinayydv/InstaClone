@@ -16,9 +16,8 @@ from django.template import Context, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 import smtplib
 
-
-
 # Create your views here.
+
 
 def signup_view(request):
     today = datetime.now()
@@ -96,7 +95,6 @@ def check_validation(request):
 def post_view(request):
     user = check_validation(request)
     set_api_key("rpMuzF79DEc91DyPeTe3Dgs1EZ3CYjDC2YRxRGyQQoo")
-
     if user:
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES)
@@ -127,7 +125,7 @@ def post_view(request):
 def feed(request):
     user = check_validation(request)
     if user:
-        posts = PostModel.objects.all().order_by('-created_on')[:5]#.filter(user=user)
+        posts = PostModel.objects.all().order_by('-created_on')[:1]#.filter(user=user)
 
         for post in posts:
             existing_like = LikeModel.objects.filter(post_id=post.id, user=user).first()
@@ -198,9 +196,9 @@ def comment_view(request):
             return redirect('/feed/')
     else:
         return redirect('/login')
-'''
+
+
 @login_required
 def logout(request):
     auth.logout(request)
     return redirect('login')
-'''

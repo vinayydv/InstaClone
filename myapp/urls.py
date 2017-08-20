@@ -19,6 +19,7 @@ from .views import *
 urlpatterns = [
     url('signup/', signup_view),
     url('login/', login_view, name='login'),
+
     url('feed/', feed),
     #url(r'^(?P<user>\d+)/$', feed_view, name=feed_view),
     url('post/', post_view),
