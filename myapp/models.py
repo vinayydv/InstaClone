@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+import json
 from django.db import models
 from uuid import uuid4
+from paralleldots import set_api_key, get_api_key
+from paralleldots import similarity,emotion, sentiment
+
+set_api_key("rpMuzF79DEc91DyPeTe3Dgs1EZ3CYjDC2YRxRGyQQoo")
+
 
 
 # Create your models here.
@@ -41,6 +46,17 @@ class PostModel(models.Model):
         return self.likemodel_set.count()
 
     @property
+    def caption_review(self):
+        r = sentiment(str(self.caption))
+        print r
+        if r['sentiment'] > 0.5:
+            review = 'Positive'
+        else:
+            review = 'Negative'
+        return review
+
+
+    @property
     def comments(self):
         return CommentModel.objects.filter(post=self).order_by('-created_on')
 
@@ -58,4 +74,3 @@ class CommentModel(models.Model):
     comment_text = models.CharField(max_length=555)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-

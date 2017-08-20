@@ -10,6 +10,7 @@ class SignupForm(forms.ModelForm):
 
     #forms.py
 class LoginForm(forms.ModelForm):
+
     class Meta:
         model = UserModel
         fields = ['username', 'password']
