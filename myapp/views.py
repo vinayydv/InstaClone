@@ -314,7 +314,11 @@ def comment_view(request):
 
 
 #view to invalidating session and logging out the user
-@login_required
 def logout(request):
-    auth.logout(request)
-    return redirect('login')
+    user = check_validation(request)
+    if user:
+        token = SessionToken.objects.filter(user = user)
+        token.delete()
+        return redirect('login')
+    else:
+        return redirect('login')
